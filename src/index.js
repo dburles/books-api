@@ -5,13 +5,11 @@ import schema from './schema';
 const host = process.env.GRAPHQL_HOST || 'localhost';
 const port = process.env.GRAPHQL_PORT || 3010;
 
-const wait = ms => new Promise(resolve => setTimeout(() => resolve(), ms));
+// const wait = ms => new Promise(resolve => setTimeout(() => resolve(), ms));
 
 const server = new ApolloServer({
   schema,
-  async context() {
-    // Fake latency
-    await wait(1000);
+  context() {
     return {
       dataloader: createDataLoaders()
     };
