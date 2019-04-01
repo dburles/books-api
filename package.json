@@ -1,0 +1,72 @@
+{
+  "name": "books-api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "babel src -d dist",
+    "watch": "nodemon src/index.js --watch src --exec babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Burles",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dburles/rate-api.git"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.4",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.15.1",
+    "eslint-config-env": "^4.0.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-import-order-alphabetical": "0.0.1",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.16.4"
+  },
+  "dependencies": {
+    "apollo-server": "^2.4.8",
+    "cors": "^2.8.5",
+    "dataloader": "^1.4.0",
+    "dotenv": "^6.2.0",
+    "graphql": "^14.1.1",
+    "graphql-tools": "^4.0.4",
+    "sequelize": "^4.43.0",
+    "sqlite3": "^4.0.6"
+  },
+  "eslintConfig": {
+    "extends": [
+      "env"
+    ],
+    "rules": {
+      "require-jsdoc": 0
+    },
+    "parserOptions": {
+      "sourceType": "module"
+    }
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "10"
+          }
+        }
+      ]
+    ]
+  }
+}
