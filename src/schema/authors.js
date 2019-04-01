@@ -1,5 +1,5 @@
 import { gql } from 'apollo-server';
-import { getIdsFromQueryResponse, Author, Book } from '../connectors';
+import { Author, Book } from '../connectors';
 
 export const schema = gql`
   input AuthorAddInput {
@@ -20,28 +20,25 @@ export const schema = gql`
 
 export const resolvers = {
   Author: {
-    async books({ id }, args, { dataloader }) {
-      const response = await Book.findAll({
-        attributes: ['id'],
+    books({ id }) {
+      return Book.findAll({
+        // attributes: ['id'],
         where: { authorId: id },
         order: [['createdAt', 'DESC']]
       });
-      return dataloader.Book.loadMany(getIdsFromQueryResponse(response));
     },
-    mostPopularBook(obj, args, { dataloader }) {
-      return dataloader.Book.load(1);
+    mostPopularBook() {
+      return Book.findByPk(1);
     }
   },
   Query: {
-    author(obj, { id }, { dataloader }) {
-      return dataloader.Author.load(id);
+    author(obj, { id }) {
+      return Author.findByPk(id);
     },
-    async authors(obj, args, { dataloader }) {
-      const response = await Author.findAll({
-        attributes: ['id'],
+    authors() {
+      return Author.findAll({
         order: [['createdAt', 'DESC']]
       });
-      return dataloader.Author.loadMany(getIdsFromQueryResponse(response));
     }
   },
   Mutation: {

@@ -1,5 +1,4 @@
 import { ApolloServer } from 'apollo-server';
-import { createDataLoaders } from './dataloader';
 import schema from './schema';
 
 const host = process.env.GRAPHQL_HOST || 'localhost';
@@ -11,10 +10,7 @@ const server = new ApolloServer({
   schema,
   async context() {
     // Fake latency
-    await wait(1000);
-    return {
-      dataloader: createDataLoaders()
-    };
+    // await wait(1000);
   },
   formatError(error) {
     console.log(error);

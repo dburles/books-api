@@ -21,6 +21,3 @@ export const Author = sequelize.define('author', {
 Book.belongsTo(Author);
 
 sequelize.sync();
-
-export const getIdsFromQueryResponse = response =>
-  response.map(doc => doc.toJSON().id);
